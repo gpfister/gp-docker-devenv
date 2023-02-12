@@ -23,7 +23,7 @@ on:
 
 jobs:
   deploy:
-    name: Push ghcr.io/gpfister/gp-firebase-devenv
+    name: Push ghcr.io/gpfister/gp-docker-devenv
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -37,5 +37,5 @@ jobs:
         run: echo $GHCR_IO_TOKEN | docker login ghcr.io -u gpfister --password-stdin
         env:
           GHCR_IO_TOKEN: ${{secrets.ghcr_io_token}}
-      - name: Build using ghcr.io/gpfister/gp-base-devenv:${{ matrix.ubuntu-version }} and push
+      - name: Build using ghcr.io/gpfister/gp-docker-devenv:${{ matrix.ubuntu-version }} and push
         run: (cd src && ./scripts/buildx/push.sh ${{ matrix.ubuntu-version }})

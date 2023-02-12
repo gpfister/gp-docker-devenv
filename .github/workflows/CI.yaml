@@ -16,14 +16,14 @@
 name: CI
 
 on:
-  push:
-    branches: [master]
+  # push:
+  #   branches: [master]
   pull_request:
     branches: [master]
 
 jobs:
   build:
-    name: Build ghcr.io/gpfister/gp-firebase-devenv
+    name: Build ghcr.io/gpfister/gp-docker-devenv
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -33,5 +33,5 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup buildx
         run: (cd src && ./scripts/buildx/setup.sh)
-      - name: Build using ghcr.io/gpfister/gp-base-devenv:${{ matrix.ubuntu-version }}
+      - name: Build using ghcr.io/gpfister/gp-docker-devenv:${{ matrix.ubuntu-version }}
         run: (cd src && ./scripts/buildx/build.sh ${{ matrix.ubuntu-version }})
