@@ -11,10 +11,10 @@
 # SOFTWARE.
 #
 
-FROM ghcr.io/gpfister/gp-base-devenv:22.04-1.0.0-dev
+FROM ghcr.io/gpfister/gp-base-devenv:22.04-1.0.0
 
 LABEL org.opencontainers.image.source=https://github.com/gpfister/gp-docker-devenv
-LABEL org.opencontainers.image.description "Docker dev image using ghcr.io/gpfister/gp-base-devenv:22.04"
+LABEL org.opencontainers.image.description "Docker dev image using ghcr.io/gpfister/gp-base-devenv:22.04-1.0.0"
 LABEL org.opencontainers.image.licenses=MIT
 
 USER root
