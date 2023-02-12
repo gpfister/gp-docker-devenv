@@ -1,0 +1,39 @@
+#
+# gp-firebase-devenv
+# Copyright (c) 2023, Greg PFISTER. MIT License.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+
+# Build and validate
+
+name: release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    name: Push ghcr.io/gpfister/gp-docker-devenv
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        ubuntu_version: ['20.04', '22.04']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup buildx
+        run: (cd src && ./scripts/buildx/setup.sh)
+      - name: Authenticating
+        run: echo $GHCR_IO_TOKEN | docker login ghcr.io -u gpfister --password-stdin
+        env:
+          GHCR_IO_TOKEN: ${{secrets.ghcr_io_token}}
+      - name: Build using ghcr.io/gpfister/gp-docker-devenv:${{ matrix.ubuntu_version }} and push
+        run: (cd src && ./scripts/buildx/push.sh ${{ matrix.ubuntu_version }})
