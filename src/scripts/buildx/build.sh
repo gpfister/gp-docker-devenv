@@ -25,7 +25,6 @@ IMAGE="$IMAGE_NAME:$1"
 IMAGE_VERSION="$IMAGE_NAME:$1-$VERSION"
 IMAGE_VERSION_MAJOR="$IMAGE_NAME:$1-$VERSION_MAJOR"
 IMAGE_VERSION_MINOR="$IMAGE_NAME:$1-$VERSION_MINOR"
-# IMAGE_VERSION_TIMESTAMP="$IMAGE_NAME:$1-$VERSION-$TIMESTAMP"
 
 if [ ! -f "$DOCKERFILE" ]; then
     echo "Dockerfile '$DOCKERFILE' not found"
@@ -37,5 +36,4 @@ docker buildx build --platform linux/arm64,linux/amd64 \
                     -t $IMAGE_VERSION \
                     -t $IMAGE_VERSION_MAJOR \
                     -t $IMAGE_VERSION_MINOR \
-                    # -t $IMAGE_VERSION_TIMESTAMP \
                     -f "$DOCKERFILE" .
