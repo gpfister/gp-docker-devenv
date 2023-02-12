@@ -53,4 +53,8 @@ RUN apt-get update && \
 # Set authorizations
 RUN usermod -aG docker vscode
 
-ENTRYPOINT ["/opt/docker/run.sh"]
+# Switch back to user
+USER vscode
+WORKDIR /home/vscode
+
+ENTRYPOINT ["sudo", "/opt/docker/run.sh"]
