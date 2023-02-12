@@ -16,7 +16,7 @@
 set -e
 
 VERSION=$(echo "`cat .version`-dev")
-DOCKERFILE=$(echo "./Dockerfile.base-"$1)
+DOCKERFILE=$(echo "./Dockerfile."$1)
 IMAGE_NAME=$(cat .image_name)
 IMAGE="$IMAGE_NAME:$1-$VERSION"
 

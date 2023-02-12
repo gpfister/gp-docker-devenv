@@ -45,22 +45,23 @@ format `<Ubuntu version>-<Build version>`. The build version refers to the
 latest Dockerfile script, when modification consists of fixing (patch change),
 or adding or removing something significant (minor change) or breaking (major).
 
-Images are builts daily using the last build version (at the moment), and is
-tagged with the day (`-YYYYMMDD`).
-
 For example:
 
-| Image                                                    | Description                                          |
-| -------------------------------------------------------- | ---------------------------------------------------- |
-| ghcr.io/gpfister/gp-firebase-devenv:22.04                | The latest build using Ubuntu 22.04                  |
-| ghcr.io/gpfister/gp-firebase-devenv:22.04-1.1.0          | The latest build 1.1.0 using Ubuntu 22.04            |
-| ghcr.io/gpfister/gp-firebase-devenv:22.04-1.1.0-20230102 | The build 1.1.0 on 2023 Jan. 2nd, using Ubuntu 22.04 |
-| ghcr.io/gpfister/gp-firebase-devenv:22.04-1.0.0          | The latest build 1.0.0 using Ubuntu 22.04            |
-| ghcr.io/gpfister/gp-firebase-devenv:22.04-1.0.0-20230101 | The build 1.0.0 on 2023 Jan. 1st, using Ubuntu 22.04 |
+| Image                                           | Description                               |
+| ----------------------------------------------- | ----------------------------------------- |
+| ghcr.io/gpfister/gp-firebase-devenv:22.04       | The latest build using Ubuntu 22.04       |
+| ghcr.io/gpfister/gp-firebase-devenv:22.04-1     | The latest build 1.x using Ubuntu 22.04   |
+| ghcr.io/gpfister/gp-firebase-devenv:22.04-1.1   | The latest build 1.1.x using Ubuntu 22.04 |
+| ghcr.io/gpfister/gp-firebase-devenv:22.04-1.1.0 | The latest build 1.1.0 using Ubuntu 22.04 |
+| ghcr.io/gpfister/gp-firebase-devenv:22.04-1.0   | The latest build 1.0.x using Ubuntu 22.04 |
+| ghcr.io/gpfister/gp-firebase-devenv:22.04-1.0.0 | The latest build 1.0.0 using Ubuntu 22.04 |
 
 For CI/CD, the build version is store in `.version` file. The build version is
 in the format
 [SemVer](https://en.wikipedia.org/wiki/Software_versioning#Semantic_versioning).
+
+Only the latest version (MAJOR, MAJOR.MINOR and MAJOR.MINOR.PATCH) is been built
+daily.
 
 ### Testing locally using `-dev` images
 
