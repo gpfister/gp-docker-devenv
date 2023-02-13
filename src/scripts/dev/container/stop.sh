@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# gp-firebase-devenv
+# gp-docker-devenv
 # Copyright (c) 2023, Greg PFISTER. MIT License.
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -21,3 +21,5 @@ IMAGE="$IMAGE_NAME:$1-$VERSION"
 CONTAINER=$(echo "`cat .image_name | sed -e 's/ghcr.io\///g' -e 's/gpfister\///g'`-$1-$VERSION")
 
 docker container stop $CONTAINER
+
+# End

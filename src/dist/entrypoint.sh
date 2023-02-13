@@ -1,5 +1,7 @@
+#!/bin/sh
+
 #
-# gp-docker-devenv
+# gp-firebase-devenv
 # Copyright (c) 2023, Greg PFISTER. MIT License.
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -11,8 +13,8 @@
 # SOFTWARE.
 #
 
-# Markdown
-*.md
+set -e
 
-# Scripts
-scripts/
+dockerd -G docker
+
+# End

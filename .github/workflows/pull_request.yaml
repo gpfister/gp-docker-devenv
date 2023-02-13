@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        ubuntu_version: ['20.04', '22.04']
+        ubuntu_version: ['22.04']
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -33,3 +33,4 @@ jobs:
         run: (cd src && ./scripts/buildx/setup.sh)
       - name: Build using ghcr.io/gpfister/gp-docker-devenv:${{ matrix.ubuntu_version }}
         run: (cd src && ./scripts/buildx/build.sh ${{ matrix.ubuntu_version }})
+# End
