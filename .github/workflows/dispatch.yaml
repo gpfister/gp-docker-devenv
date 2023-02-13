@@ -18,7 +18,7 @@ name: dispatch
 on:
   workflow_dispatch:
     inputs:
-      ubuntu_version:
+      ubuntuVersion:
         description: Ubuntu version
         required: true
         type: string
@@ -36,12 +36,12 @@ jobs:
         run: echo $GHCR_IO_TOKEN | docker login ghcr.io -u gpfister --password-stdin
         env:
           GHCR_IO_TOKEN: ${{ secrets.ghcr_io_token }}
-      - name: Build using ghcr.io/gpfister/gp-base-devenv:${{ inputs.ubuntu_version }}
-        run: (cd src && ./scripts/buildx/build.sh $UBUNTU_VERSION)
+      - name: Build using ghcr.io/gpfister/gp-base-devenv:${{ inputs.ubuntuVersion }}
+        run: (cd src && ./scripts/buildx/build.sh $ubuntuVersion)
         env:
-          UBUNTU_VERSION: ${{ github.event.inputs.ubuntu_version }}
-      - name: Push to ghcr.io/gpfister/gp-docker-devenv:${{ inputs.ubuntu_version }}
-        run: (cd src && ./scripts/buildx/push.sh $UBUNTU_VERSION)
+          ubuntuVersion: ${{ github.event.inputs.ubuntuVersion }}
+      - name: Push to ghcr.io/gpfister/gp-docker-devenv:${{ inputs.ubuntuVersion }}
+        run: (cd src && ./scripts/buildx/push.sh $ubuntuVersion)
         env:
-          UBUNTU_VERSION: ${{ github.event.inputs.ubuntu_version }}
+          ubuntuVersion: ${{ github.event.inputs.ubuntuVersion }}
 # End
