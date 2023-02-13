@@ -1,3 +1,5 @@
+#!/bin/sh
+
 #
 # gp-docker-devenv
 # Copyright (c) 2023, Greg PFISTER. MIT License.
@@ -11,8 +13,18 @@
 # SOFTWARE.
 #
 
-# Markdown
-*.md
+set -e
 
-# Scripts
-scripts/
+VERSION="`cat .version`-dev"
+DOCKERFILE=`echo "./Dockerfile."$1`
+IMAGE_NAME="`cat .image_name`"
+IMAGE="$IMAGE_NAME:$1-$VERSION"
+
+if [ ! -f "$DOCKERFILE" ]; then
+    echo "Dockerfile '$DOCKERFILE' not found"
+    exit 1
+fi
+
+docker build --no-cache -t $IMAGE -f $DOCKERFILE .
+
+# End

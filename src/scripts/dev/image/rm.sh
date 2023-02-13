@@ -1,3 +1,5 @@
+#!/bin/sh
+
 #
 # gp-docker-devenv
 # Copyright (c) 2023, Greg PFISTER. MIT License.
@@ -11,8 +13,12 @@
 # SOFTWARE.
 #
 
-# Markdown
-*.md
+set -e
 
-# Scripts
-scripts/
+VERSION="`cat .version`-dev"
+IMAGE_NAME="`cat .image_name`"
+IMAGE="$IMAGE_NAME:$1-$VERSION"
+
+docker iamge rm $IMAGE
+
+# End

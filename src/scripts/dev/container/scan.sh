@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# gp-firebase-devenv
+# gp-docker-devenv
 # Copyright (c) 2023, Greg PFISTER. MIT License.
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -15,14 +15,16 @@
 
 set -e
 
-VERSION=`cat .version`-dev
+VERSION="`cat .version`-dev"
+DOCKERFILE=`echo "./Dockerfile."$1`
 IMAGE_NAME="`cat .image_name`"
 IMAGE="$IMAGE_NAME:$1-$VERSION"
-CONTAINER="`cat .image_name | sed -e 's/gpfister\///g'`-$1-$VERSION"
 
-docker run --user vscode \
-           --name $CONTAINER \
-           -it $IMAGE \
-           /bin/zsh
+if [ ! -f "$DOCKERFILE" ]; then
+    echo "Dockerfile '$DOCKERFILE' not found"
+    exit 1
+fi
+
+docker scan $IMAGE -f "$DOCKERFILE" --accept-license 
 
 # End
