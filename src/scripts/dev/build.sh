@@ -26,3 +26,5 @@ if [ ! -f "$DOCKERFILE" ]; then
 fi
 
 docker build --no-cache -t $IMAGE -f $DOCKERFILE .
+
+# End

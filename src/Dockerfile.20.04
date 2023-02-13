@@ -19,9 +19,8 @@ LABEL org.opencontainers.image.licenses=MIT
 
 USER root
 
-# Command script
-RUN mkdir -p /opt/docker
-COPY dist/run.sh /opt/docker/
+# Entrypoint script
+COPY dist/entrypoint.sh /
 
 # Update all
 RUN apt-get update && \
@@ -57,4 +56,4 @@ RUN usermod -aG docker vscode
 USER vscode
 WORKDIR /home/vscode
 
-ENTRYPOINT ["sudo", "/opt/docker/run.sh"]
+ENTRYPOINT ["sudo", "/entrypoint.sh"]

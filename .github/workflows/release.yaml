@@ -38,6 +38,7 @@ jobs:
         run: (cd src && ./scripts/buildx/build.sh 22.04)
       - name: Push to ghcr.io
         run: (cd src && ./scripts/buildx/push.sh 20.04 && ./scripts/buildx/push.sh 22.04)
+# End
 #
 # Old version
 # jobs:

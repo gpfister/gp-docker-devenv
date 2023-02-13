@@ -21,3 +21,5 @@ IMAGE="$IMAGE_NAME:$1-$VERSION"
 CONTAINER=$(echo "`cat .image_name | sed -e 's/ghcr.io\///g' -e 's/gpfister\///g'`-$1-$VERSION")
 
 docker container rm $CONTAINER
+
+# End

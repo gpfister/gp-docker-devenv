@@ -26,3 +26,5 @@ if [ ! -f "$DOCKERFILE" ]; then
 fi
 
 docker scan $IMAGE -f "$DOCKERFILE" --accept-license 
+
+# End

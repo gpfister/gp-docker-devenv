@@ -23,3 +23,5 @@ docker buildx use multiarch
 
 echo "Inspecting result:"
 docker buildx inspect --bootstrap
+
+# End
