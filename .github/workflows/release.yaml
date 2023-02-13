@@ -11,7 +11,7 @@
 # SOFTWARE.
 #
 
-# Build and validate
+# Build and push
 
 name: release
 
@@ -23,9 +23,6 @@ jobs:
   deploy:
     name: Push ghcr.io/gpfister/gp-docker-devenv
     runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        ubuntu_version: ['20.04', '22.04']
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -35,5 +32,29 @@ jobs:
         run: echo $GHCR_IO_TOKEN | docker login ghcr.io -u gpfister --password-stdin
         env:
           GHCR_IO_TOKEN: ${{secrets.ghcr_io_token}}
-      - name: Build using ghcr.io/gpfister/gp-docker-devenv:${{ matrix.ubuntu_version }} and push
-        run: (cd src && ./scripts/buildx/push.sh ${{ matrix.ubuntu_version }})
+      - name: Build using ghcr.io/gpfister/gp-base-devenv:20.04-1
+        run: (cd src && ./scripts/buildx/build.sh 20.04)
+      - name: Build using ghcr.io/gpfister/gp-base-devenv:22.04-1
+        run: (cd src && ./scripts/buildx/build.sh 22.04)
+      - name: Push to ghcr.io
+        run: (cd src && ./scripts/buildx/push.sh 20.04 && ./scripts/buildx/push.sh 22.04)
+#
+# Old version
+# jobs:
+#   deploy:
+#     name: Push ghcr.io/gpfister/gp-docker-devenv
+#     runs-on: ubuntu-22.04
+#     strategy:
+#       matrix:
+#         ubuntu_version: ['20.04', '22.04']
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v3
+#       - name: Setup buildx
+#         run: (cd src && ./scripts/buildx/setup.sh)
+#       - name: Authenticating
+#         run: echo $GHCR_IO_TOKEN | docker login ghcr.io -u gpfister --password-stdin
+#         env:
+#           GHCR_IO_TOKEN: ${{secrets.ghcr_io_token}}
+#       - name: Build using ghcr.io/gpfister/gp-docker-devenv:${{ matrix.ubuntu_version }} and push
+#         run: (cd src && ./scripts/buildx/push.sh ${{ matrix.ubuntu_version }})
