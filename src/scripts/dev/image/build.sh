@@ -15,6 +15,11 @@
 
 set -e
 
+if [ -z "$1" ]; then
+    echo "Usage: $0 <UBUNUT_VERSION>"
+    exit 1
+fi
+
 VERSION="`cat .version`-dev"
 DOCKERFILE=`echo "./Dockerfile."$1`
 IMAGE_NAME="`cat .image_name`"

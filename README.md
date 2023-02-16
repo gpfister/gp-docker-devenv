@@ -3,7 +3,7 @@
 ![ARM64](https://img.shields.io/badge/linux%2farm64-Yes-red)
 ![AMD64](https://img.shields.io/badge/linux%2famd64-Yes-red)
 
-# Docker Dev Environment
+# gp-docker-devenv: Build a Docker dev containers for VSCode
 
 Copyright (c) 2023, Greg PFISTER. MIT License
 
