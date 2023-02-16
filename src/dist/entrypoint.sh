@@ -15,6 +15,7 @@
 
 set -e
 
+env
 dockerd -G docker
 
 # End

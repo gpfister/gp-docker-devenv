@@ -19,6 +19,6 @@ VERSION="`cat .version`-dev"
 IMAGE_NAME="`cat .image_name`"
 IMAGE="$IMAGE_NAME:$1-$VERSION"
 
-docker iamge rm $IMAGE
+docker image rm $IMAGE
 
 # End

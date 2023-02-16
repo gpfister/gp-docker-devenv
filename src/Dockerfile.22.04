@@ -11,13 +11,15 @@
 # SOFTWARE.
 #
 
-FROM ghcr.io/gpfister/gp-base-devenv:22.04-1
+FROM ghcr.io/gp-devenv/gp-base-devenv:22.04-1.4.0-dev
 
-LABEL org.opencontainers.image.source=https://github.com/gpfister/gp-docker-devenv
-LABEL org.opencontainers.image.description "Docker dev image using ghcr.io/gpfister/gp-base-devenv:22.04-1"
+LABEL org.opencontainers.image.source=https://github.com/gp-devenv/gp-docker-devenv
+LABEL org.opencontainers.image.description "Docker dev image using ghcr.io/gp-devenv/gp-base-devenv:22.04-1"
 LABEL org.opencontainers.image.licenses=MIT
 
-USER root
+VOLUME [ "/var/lib/docker" ]
+
+ USER root
 
 # Entrypoint script
 COPY dist/entrypoint.sh /
@@ -52,8 +54,8 @@ RUN apt-get update && \
 # Set authorizations
 RUN usermod -aG docker vscode
 
-# Switch back to user
-USER vscode
-WORKDIR /home/vscode
+EXPOSE 80
 
 ENTRYPOINT ["sudo", "/entrypoint.sh"]
+
+# End
