@@ -3,7 +3,7 @@
 ![ARM64](https://img.shields.io/badge/linux%2farm64-Yes-red)
 ![AMD64](https://img.shields.io/badge/linux%2famd64-Yes-red)
 
-# Docker Dev Environment
+# gp-docker-devenv: Build a Docker dev containers for VSCode
 
 Copyright (c) 2023, Greg PFISTER. MIT License
 
@@ -19,7 +19,10 @@ This is image is provided with Ubuntu 22.04.
 See [version](#version) mapping to find out which version Ubuntu and node and java.
 
 This image is built from
-[ghcr.io/gpfister/gp-base-devenv](https://github.com/gpfister/gp-base-devenv/pkgs/container/gp-base-devenv).
+[ghcr.io/gp-devenv/gp-base-devenv](https://github.com/gp-devenv/gp-base-devenv/pkgs/container/gp-base-devenv).
+
+The image can be found
+[here](https://github.com/gp-devenv/gp-docker-devenv/pkgs/container/gp-docker-devenv).
 
 <div id="volumes" />
 
@@ -45,14 +48,14 @@ or adding or removing something significant (minor change) or breaking (major).
 
 For example:
 
-| Image                                         | Description                               |
-| --------------------------------------------- | ----------------------------------------- |
-| ghcr.io/gpfister/gp-docker-devenv:22.04       | The latest build using Ubuntu 22.04       |
-| ghcr.io/gpfister/gp-docker-devenv:22.04-1     | The latest build 1.x using Ubuntu 22.04   |
-| ghcr.io/gpfister/gp-docker-devenv:22.04-1.1   | The latest build 1.1.x using Ubuntu 22.04 |
-| ghcr.io/gpfister/gp-docker-devenv:22.04-1.1.0 | The latest build 1.1.0 using Ubuntu 22.04 |
-| ghcr.io/gpfister/gp-docker-devenv:22.04-1.0   | The latest build 1.0.x using Ubuntu 22.04 |
-| ghcr.io/gpfister/gp-docker-devenv:22.04-1.0.0 | The latest build 1.0.0 using Ubuntu 22.04 |
+| Image                                          | Description                               |
+| ---------------------------------------------- | ----------------------------------------- |
+| ghcr.io/gp-devenv/gp-docker-devenv:22.04       | The latest build using Ubuntu 22.04       |
+| ghcr.io/gp-devenv/gp-docker-devenv:22.04-1     | The latest build 1.x using Ubuntu 22.04   |
+| ghcr.io/gp-devenv/gp-docker-devenv:22.04-1.1   | The latest build 1.1.x using Ubuntu 22.04 |
+| ghcr.io/gp-devenv/gp-docker-devenv:22.04-1.1.0 | The latest build 1.1.0 using Ubuntu 22.04 |
+| ghcr.io/gp-devenv/gp-docker-devenv:22.04-1.0   | The latest build 1.0.x using Ubuntu 22.04 |
+| ghcr.io/gp-devenv/gp-docker-devenv:22.04-1.0.0 | The latest build 1.0.0 using Ubuntu 22.04 |
 
 For CI/CD, the build version is store in `.version` file. The build version is
 in the format
@@ -124,7 +127,7 @@ To build using a specific Ubuntu version, use:
 
 where `UBUNTU_VERSION` must 22.04.
 
-It will create and image `gpfister/gp-docker-devenv` tagged with the current
+It will create and image `ghcr.io/gp-devenv/gp-docker-devenv` tagged with the current
 version (see `src/.version` file) and `-dev` suffix.
 
 You may alter the `.src/.version` file should you want to have different tags or
@@ -132,7 +135,7 @@ names, however if you PR your change, it will be rejected. The ideal solution
 is to run the `docker build` command instead.
 
 To remove the created image (named:
-`ghcr.io/gpfister/gp-docker-devenv:<UBUNTU_VERIONS>-<VERSION>-dev`), simply use:
+`ghcr.io/gp-devenv/gp-docker-devenv:<UBUNTU_VERIONS>-<VERSION>-dev`), simply use:
 
 ```sh
 (cd scr && ./scripts/dev/image/rm.sh <UBUNTU_VERSION>)
@@ -188,7 +191,7 @@ image. For example, here's the way to set the image to a different timezone than
 "Europe/Paris" (the default one):
 
 ```Dockerfile
-FROM ghcr.io/gpfister/gp-docker-devenv:22.04
+FROM ghcr.io/gp-devenv/gp-docker-devenv:22.04
 
 ENV TZ="America/New_York"
 
@@ -210,13 +213,13 @@ make sure the `vscode` is the last one activate.
 ## Version
 
 _`Base image version` correspond to the undelying base image that can be found
-[here](https://github.com/gpfister/gp-base-devenv/pkgs/container/gp-base-devenv)_
+[here](https://github.com/gp-devenv/gp-base-devenv/pkgs/container/gp-base-devenv)_
 
-|    Image    |           Base image version          |   Ubuntu    | amd64 | arm64 |
-| :---------: | :-----------------------------------: | :---------: | :---: | :---: |
-| 22:04-1.0.0 | ghcr.io/gpfister/gp-base-devenv:22.04 | 22.04 (LTS) |   X   |   X   |
-| 22:04-1.1.0 | ghcr.io/gpfister/gp-base-devenv:22.04 | 22.04 (LTS) |   X   |   X   |
-| 22:04-1.2.0 | ghcr.io/gpfister/gp-base-devenv:22.04 | 22.04 (LTS) |   X   |   X   |
+|    Image    |           Base image version           |   Ubuntu    | amd64 | arm64 |
+| :---------: | :------------------------------------: | :---------: | :---: | :---: |
+| 22:04-1.0.0 | ghcr.io/gp-devenv/gp-base-devenv:22.04 | 22.04 (LTS) |   X   |   X   |
+| 22:04-1.1.0 | ghcr.io/gp-devenv/gp-base-devenv:22.04 | 22.04 (LTS) |   X   |   X   |
+| 22:04-1.2.0 | ghcr.io/gp-devenv/gp-base-devenv:22.04 | 22.04 (LTS) |   X   |   X   |
 
 <div id="faq" />
 
@@ -233,7 +236,7 @@ You will have to [build from this image](#build-from-this-image) to disable the
 the password less sudo command. Typically create a `Dockerfile` like:
 
 ```Dockerfile
-FROM ghcr.io/gpfister/gp-docker-devenv:22.04
+FROM ghcr.io/gp-devenv/gp-docker-devenv:22.04
 
 ARG VSCODE_PASSWORD="dummy"
 
@@ -255,7 +258,7 @@ If you simply want to get rid of `sudo`:
 
 ```Dockerfile
 
-FROM ghcr.io/gpfister/gp-docker-devenv:22.04
+FROM ghcr.io/gp-devenv/gp-docker-devenv:22.04
 
 # Switch to root to make changes
 USER root

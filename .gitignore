@@ -1,7 +1,5 @@
-#!/bin/sh
-
 #
-# gp-docker-devenv
+# gp-firebase-devenv
 # Copyright (c) 2023, Greg PFISTER. MIT License.
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,24 +10,3 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
-
-set -e
-
-if [ -z "$1" ]; then
-    echo "Usage: $0 <UBUNUT_VERSION>"
-    exit 1
-fi
-
-VERSION="`cat .version`-dev"
-DOCKERFILE=`echo "./Dockerfile."$1`
-IMAGE_NAME="`cat .image_name`"
-IMAGE="$IMAGE_NAME:$1-$VERSION"
-
-if [ ! -f "$DOCKERFILE" ]; then
-    echo "Dockerfile '$DOCKERFILE' not found"
-    exit 1
-fi
-
-docker scan $IMAGE -f "$DOCKERFILE" --accept-license 
-
-# End

@@ -15,6 +15,11 @@
 
 set -e
 
+if [ -z "$1" ]; then
+    echo "Usage: $0 <UBUNUT_VERSION>"
+    exit 1
+fi
+
 VERSION=$(cat .version)
 VERSION_MAJOR=$(echo $VERSION | sed 's/\([0-9]*\).\([0-9]*\).\([0-9]*\)$/\1/')
 VERSION_MINOR=$(echo $VERSION | sed 's/\([0-9]*\).\([0-9]*\).\([0-9]*\)$/\1.\2/')

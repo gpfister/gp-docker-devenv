@@ -15,15 +15,20 @@
 
 set -e
 
+if [ -z "$1" ]; then
+    echo "Usage: $0 <UBUNUT_VERSION>"
+    exit 1
+fi
+
 VERSION=$(echo "`cat .version`-dev")
 IMAGE_NAME=$(cat .image_name)
 IMAGE="$IMAGE_NAME:$1-$VERSION"
-CONTAINER=$(echo "`cat .image_name | sed -e 's/ghcr.io\///g' -e 's/gpfister\///g'`-$1-$VERSION")
+CONTAINER=$(echo "`cat .image_name | sed -e 's/ghcr.io\///g' -e 's/gp-devenv\///g'`-$1-$VERSION")
 
-docker run --user vscode \
-           --name $CONTAINER \
-           -i -t \
-           $IMAGE \
-           /bin/zsh
+docker run --name $CONTAINER \
+           --network gp-docker-devenv-net \
+           -p 80:80 \
+           -it --privileged \
+           $IMAGE 
 
 # End

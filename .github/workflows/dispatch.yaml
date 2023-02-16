@@ -25,7 +25,7 @@ on:
 
 jobs:
   deploy:
-    name: Push ghcr.io/gpfister/gp-docker-devenv
+    name: Push ghcr.io/gp-devenv/gp-docker-devenv
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
@@ -36,11 +36,11 @@ jobs:
         run: echo $GHCR_IO_TOKEN | docker login ghcr.io -u gpfister --password-stdin
         env:
           GHCR_IO_TOKEN: ${{ secrets.ghcr_io_token }}
-      - name: Build using ghcr.io/gpfister/gp-base-devenv:${{ inputs.ubuntuVersion }}
+      - name: Build using ghcr.io/gp-devenv/gp-base-devenv:${{ inputs.ubuntuVersion }}
         run: (cd src && ./scripts/buildx/build.sh $ubuntuVersion)
         env:
           ubuntuVersion: ${{ github.event.inputs.ubuntuVersion }}
-      - name: Push to ghcr.io/gpfister/gp-docker-devenv:${{ inputs.ubuntuVersion }}
+      - name: Push to ghcr.io/gp-devenv/gp-docker-devenv:${{ inputs.ubuntuVersion }}
         run: (cd src && ./scripts/buildx/push.sh $ubuntuVersion)
         env:
           ubuntuVersion: ${{ github.event.inputs.ubuntuVersion }}

@@ -15,10 +15,15 @@
 
 set -e
 
+if [ -z "$1" ]; then
+    echo "Usage: $0 <UBUNUT_VERSION>"
+    exit 1
+fi
+
 VERSION=`cat .version`-dev
 IMAGE_NAME="`cat .image_name`"
 IMAGE="$IMAGE_NAME:$1-$VERSION"
-CONTAINER="`cat .image_name | sed -e 's/ghcr.io\///g' -e 's/gpfister\///g'`-$1-$VERSION"
+CONTAINER="`cat .image_name | sed -e 's/ghcr.io\///g' -e 's/gp-devenv\///g'`-$1-$VERSION"
 
 docker container rm $CONTAINER
 
