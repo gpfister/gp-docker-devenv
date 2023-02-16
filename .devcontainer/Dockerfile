@@ -11,7 +11,7 @@
 # SOFTWARE.
 #
 
-FROM ghcr.io/gpfister/gp-docker-devenv:22.04-1
+FROM ghcr.io/gp-devenv/gp-docker-devenv:22.04-1
 
 USER vscode
 WORKDIR /workspace
