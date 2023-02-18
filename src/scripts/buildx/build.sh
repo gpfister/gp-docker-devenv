@@ -42,17 +42,17 @@ docker buildx build --no-cache \
                     -t $IMAGE_VERSION_MAJOR \
                     -t $IMAGE_VERSION_MINOR \
                     -f "$DOCKERFILE" .
-docker buildx build --platform linux/arm64 \
-                    -t $IMAGE-arm64 \
-                    -t $IMAGE_VERSION-arm64 \
-                    -t $IMAGE_VERSION_MAJOR-arm64 \
-                    -t $IMAGE_VERSION_MINOR-arm64 \
-                    -f "$DOCKERFILE" .
-docker buildx build --platform linux/amd64 \
-                    -t $IMAGE-amd64 \
-                    -t $IMAGE_VERSION-amd64 \
-                    -t $IMAGE_VERSION_MAJOR-amd64 \
-                    -t $IMAGE_VERSION_MINOR-amd64 \
-                    -f "$DOCKERFILE" .
+# docker buildx build --platform linux/arm64 \
+#                     -t $IMAGE-arm64 \
+#                     -t $IMAGE_VERSION-arm64 \
+#                     -t $IMAGE_VERSION_MAJOR-arm64 \
+#                     -t $IMAGE_VERSION_MINOR-arm64 \
+#                     -f "$DOCKERFILE" .
+# docker buildx build --platform linux/amd64 \
+#                     -t $IMAGE-amd64 \
+#                     -t $IMAGE_VERSION-amd64 \
+#                     -t $IMAGE_VERSION_MAJOR-amd64 \
+#                     -t $IMAGE_VERSION_MINOR-amd64 \
+#                     -f "$DOCKERFILE" .
 
 # End
