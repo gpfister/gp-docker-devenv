@@ -13,7 +13,7 @@
 
 # Build and push
 
-name: release
+name: Release
 
 on:
   release:
@@ -35,8 +35,19 @@ jobs:
         run: echo $GHCR_IO_TOKEN | docker login ghcr.io -u gpfister --password-stdin
         env:
           GHCR_IO_TOKEN: ${{ secrets.ghcr_io_token }}
-      # - name: Build using ghcr.io/gp-devenv/gp-base-devenv:${{ matrix.ubuntuVersion }}
-      #   run: (cd src && ./scripts/buildx/build.sh ${{ matrix.ubuntuVersion }})
       - name: Build and push to ghcr.io/gp-devenv/gp-docker-devenv:${{ matrix.ubuntuVersion }}
         run: (cd src && ./scripts/buildx/push.sh ${{ matrix.ubuntuVersion }})
+  cleanup:
+    runs-on: ubuntu-22.04
+    needs: deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cleanup
+        uses: gp-devenv/gp-docker-image-cleanup@v1
+        with:
+          runAsUser: gpfister
+          token: ${{ secrets.GHCR_IO_TOKEN }}
+          retentionDays: 7
+          isOwnedByOrganization: true
 # End

@@ -1,6 +1,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
 [![Ubuntu](https://img.shields.io/badge/ubuntu-22.04-orange)](https://ubuntu.com)
 ![ARM64](https://img.shields.io/badge/linux%2farm64-Yes-red)
+![ARM64](https://img.shields.io/badge/linux%2farm%2fv7-Yes-red)
 ![AMD64](https://img.shields.io/badge/linux%2famd64-Yes-red)
 
 # gp-docker-devenv: Build a Docker dev containers for VSCode
@@ -50,7 +51,6 @@ For example:
 
 | Image                                          | Description                               |
 | ---------------------------------------------- | ----------------------------------------- |
-| ghcr.io/gp-devenv/gp-docker-devenv:22.04       | The latest build using Ubuntu 22.04       |
 | ghcr.io/gp-devenv/gp-docker-devenv:22.04-1     | The latest build 1.x using Ubuntu 22.04   |
 | ghcr.io/gp-devenv/gp-docker-devenv:22.04-1.1   | The latest build 1.1.x using Ubuntu 22.04 |
 | ghcr.io/gp-devenv/gp-docker-devenv:22.04-1.1.0 | The latest build 1.1.0 using Ubuntu 22.04 |
@@ -85,8 +85,8 @@ You will need to create a multiarch builder:
 ./src/scripts/buildx/setup.sh
 ```
 
-Up successful completion, it should at least have platforms `linux/arm64` and
-`linux/amd64`:
+On successful completion, it should at least have platforms `linux/arm64`,
+`linux/arm/v7` and `linux/amd64`:
 
 ```sh
 [+] Building 5.8s (1/1) FINISHED
@@ -212,14 +212,12 @@ make sure the `vscode` is the last one activate.
 
 ## Version
 
-_`Base image version` correspond to the undelying base image that can be found
+_`Base image version` correspond to the underlying base image that can be found
 [here](https://github.com/gp-devenv/gp-base-devenv/pkgs/container/gp-base-devenv)_
 
-|    Image    |           Base image version           |   Ubuntu    | amd64 | arm64 |
-| :---------: | :------------------------------------: | :---------: | :---: | :---: |
-| 22:04-1.0.0 | ghcr.io/gp-devenv/gp-base-devenv:22.04 | 22.04 (LTS) |   X   |   X   |
-| 22:04-1.1.0 | ghcr.io/gp-devenv/gp-base-devenv:22.04 | 22.04 (LTS) |   X   |   X   |
-| 22:04-1.2.0 | ghcr.io/gp-devenv/gp-base-devenv:22.04 | 22.04 (LTS) |   X   |   X   |
+|   Image   |            Base image version            |   Ubuntu    | amd64 | arm64 |
+| :-------: | :--------------------------------------: | :---------: | :---: | :---: |
+| 22:04-1.x | ghcr.io/gp-devenv/gp-base-devenv:22.04-1 | 22.04 (LTS) |   X   |   X   |
 
 <div id="faq" />
 
