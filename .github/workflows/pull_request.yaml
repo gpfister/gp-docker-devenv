@@ -13,7 +13,7 @@
 
 # Build and validate
 
-name: pull_request
+name: Pull request
 
 on:
   pull_request:
@@ -33,4 +33,18 @@ jobs:
         run: (cd src && ./scripts/buildx/setup.sh)
       - name: Build using ghcr.io/gp-devenv/gp-docker-devenv:${{ matrix.ubuntuVersion }}
         run: (cd src && ./scripts/buildx/build.sh ${{ matrix.ubuntuVersion }})
+  cleanup:
+    runs-on: ubuntu-22.04
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cleanup
+        uses: gp-devenv/gp-docker-image-cleanup@v1
+        with:
+          runAsUser: gpfister
+          token: ${{ secrets.GHCR_IO_TOKEN }}
+          retentionDays: 7
+          isOwnedByOrganization: true
+          testOnly: true
 # End
