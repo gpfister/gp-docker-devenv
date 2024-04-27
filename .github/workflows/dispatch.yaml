@@ -1,6 +1,6 @@
 #
 # gp-firebase-devenv
-# Copyright (c) 2023, Greg PFISTER. MIT License.
+# Copyright (c) 2023-2024, Greg PFISTER. MIT License.
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -29,9 +29,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          ref: '1.4.0'
+          ref: '1.5.0'
       - name: Setup buildx
         run: (cd src && ./scripts/buildx/setup.sh)
       - name: Authenticating
@@ -47,7 +47,7 @@ jobs:
     needs: deploy
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Cleanup
         uses: gp-devenv/gp-docker-image-cleanup@v1
         with:
