@@ -1,6 +1,6 @@
 #
 # gp-firebase-devenv
-# Copyright (c) 2023, Greg PFISTER. MIT License.
+# Copyright (c) 2023-2024, Greg PFISTER. MIT License.
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -11,7 +11,7 @@
 # SOFTWARE.
 #
 
-FROM ghcr.io/gp-devenv/gp-docker-devenv:22.04-1
+FROM ghcr.io/gp-devenv/gp-docker-devenv:22.04
 
 USER vscode
 WORKDIR /workspace

@@ -215,9 +215,9 @@ make sure the `vscode` is the last one activate.
 _`Base image version` correspond to the underlying base image that can be found
 [here](https://github.com/gp-devenv/gp-base-devenv/pkgs/container/gp-base-devenv)_
 
-|   Image   |            Base image version            |   Ubuntu    | amd64 | arm64 |
-| :-------: | :--------------------------------------: | :---------: | :---: | :---: |
-| 22:04-1.x | ghcr.io/gp-devenv/gp-base-devenv:22.04-1 | 22.04 (LTS) |   X   |   X   |
+|   Image   |            Base image version            |   Ubuntu    | amd64 | arm64 | arm/v7 | Daily build |
+| :-------: | :--------------------------------------: | :---------: | :---: | :---: | :----: | ----------- |
+| 22:04-1.x | ghcr.io/gp-devenv/gp-base-devenv:22.04-1 | 22.04 (LTS) |   X   |   X   |   X    | Yes         |
 
 <div id="faq" />
 
