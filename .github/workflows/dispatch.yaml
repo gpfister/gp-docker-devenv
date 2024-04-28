@@ -31,7 +31,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: '1.5.0'
+          ref: '1.5.1'
       - name: Setup buildx
         run: (cd src && ./scripts/buildx/setup.sh)
       - name: Authenticating
@@ -49,7 +49,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Cleanup
-        uses: gp-devenv/gp-docker-image-cleanup@v1
+        uses: gp-devenv/gp-docker-image-cleanup@v2
         with:
           runAsUser: gpfister
           token: ${{ secrets.GHCR_IO_TOKEN }}
