@@ -40,7 +40,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Cleanup
-        uses: gp-devenv/gp-docker-image-cleanup@v1
+        uses: gp-devenv/gp-docker-image-cleanup@v2
         with:
           runAsUser: gpfister
           token: ${{ secrets.GHCR_IO_TOKEN }}
